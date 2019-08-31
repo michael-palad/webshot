@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block title %}Screenshots{% endblock %}
+
+{% block content %}
+  <a href="{{ url_for('index') }}">Take another screenshot</a>
+
+  <h1>Available Screenshots</h1>
+  <ul>
+    {% for image_name in image_names %}
+    <li> {{ image_name }} <img src="{{ url_for('static', filename='screenshots/' + image_name + '.png') }}"> </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

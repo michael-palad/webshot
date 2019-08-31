@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}Screenshot being created...{% endblock %}
+
+{% block content %}
+  <a href="{{ url_for('index') }}">Take another screenshot</a>
+
+  <h3>Screenshot being created for {{ name }} ({{ url }})</h3>
+  <p>When it's ready it will appear at <a href="{{ url_for('screenshots') }}">Screenshots</a></p>
+{% endblock %}

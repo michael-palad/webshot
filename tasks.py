@@ -12,7 +12,7 @@ def create_url_screenshot(name, url):
     driver.set_window_size(1440, 900, driver.window_handles[0])
 
     driver.get(url)
-    filename = 'screenshots/{}.png'.format(name.lower())
+    filename = 'static/screenshots/{}.png'.format(name.lower())
     driver.save_screenshot(filename)
     driver.close()
     

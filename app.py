@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request
 from redis import Redis
 from rq import Queue
@@ -15,8 +16,18 @@ def index():
         url = request.form.get('url')
         
         q.enqueue(create_url_screenshot, name, url)
-        return 'Screenshot being taken for {} ({})'.format(name, url)
+        return render_template('message.html', name=name, url=url)
+    
     return render_template('index.html')
+
+
+@app.route('/screenshots')
+def screenshots():
+    screencaps_dir = os.path.join(os.path.dirname(app.instance_path), 'static/screenshots')
+    image_files = os.listdir(screencaps_dir)
+    image_names = [image_name.split('.png')[0] for image_name in image_files]
+    return render_template('screenshots.html', image_names=image_names)
+
 
 
 
