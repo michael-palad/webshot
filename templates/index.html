@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Webshot{% endblock %}
+
+{% block content %}
+  <form method="POST">
+    <p>
+      Enter name of website: <input type="text" name="name">
+    </p>
+    <p>
+      Enter url of website: <input type="text" name="url">
+    </p>
+    <input type="submit" value="Get Screenshot">
+  </form>
+{% endblock %}
