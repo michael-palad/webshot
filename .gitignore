@@ -1,3 +1,6 @@
 __pycache__/
 venv/
+screenshots/*.png
+screenshots/*.jpg
+
 
