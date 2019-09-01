@@ -8,7 +8,14 @@
   <h1>Available Screenshots</h1>
   <ul>
     {% for image_name in image_names %}
-    <li> {{ image_name }} <img src="{{ url_for('static', filename='screenshots/' + image_name + '.png') }}"> </li>
+    <li> 
+      {{ image_name }} 
+      <p>
+        <a href="{{ url_for('static', filename='screenshots/' + image_name + '.png') }}" target="_blank">
+          <img src="{{ url_for('static', filename='screenshots/' + image_name + '_tn.png') }}">
+        </a>
+      </p>
+    </li>
     {% endfor %}
   </ul>
 {% endblock %}

@@ -1,4 +1,5 @@
 import os
+import glob
 from flask import Flask, render_template, request
 from redis import Redis
 from rq import Queue
@@ -23,9 +24,11 @@ def index():
 
 @app.route('/screenshots')
 def screenshots():
-    screencaps_dir = os.path.join(os.path.dirname(app.instance_path), 'static/screenshots')
-    image_files = os.listdir(screencaps_dir)
-    image_names = [image_name.split('.png')[0] for image_name in image_files]
+    #screencaps_dir = os.path.join(os.path.dirname(app.instance_path), 'static/screenshots')
+    #image_files = os.listdir(screencaps_dir)
+    image_files = [image_file for image_file in glob.glob('static/screenshots/*.png') if not image_file.endswith('_tn.png')]
+    image_files.sort(key=os.path.getmtime, reverse=True)
+    image_names = [image_name.split('.png')[0].rsplit('/', 2)[-1] for image_name in image_files]
     return render_template('screenshots.html', image_names=image_names)
 
 
