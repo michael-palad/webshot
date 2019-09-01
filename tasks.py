@@ -1,4 +1,5 @@
 from selenium import webdriver
+from PIL import Image
 
 
 def create_url_screenshot(name, url):
@@ -15,5 +16,12 @@ def create_url_screenshot(name, url):
     filename = 'static/screenshots/{}.png'.format(name.lower())
     driver.save_screenshot(filename)
     driver.close()
-    
     print('Screenshot saves as {}'.format(filename))
+    
+    print('Generating thumbnail...')
+    image = Image.open(filename)
+    size = (288, 180)
+    image.thumbnail(size, Image.ANTIALIAS)
+    thumbnail_filename = 'static/screenshots/{}_tn.png'.format(name.lower())
+    image.save(thumbnail_filename)
+    print('Thumbnail {} created.'.format(thumbnail_filename))
